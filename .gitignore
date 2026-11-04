@@ -218,3 +218,46 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# STYLEMATCH private data, derivatives, credentials and local tooling
+data/
+private/
+originals/
+prepared/
+crops/
+embeddings/
+models/
+weights/
+cache/
+outputs/
+runs/
+.tools/
+.uv-cache/
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.heic
+*.heif
+*.avif
+*.gif
+*.tif
+*.tiff
+*.bmp
+*.dng
+*.raw

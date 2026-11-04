@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "dataset_id": "synthetic-v1",
+  "synthetic": true,
+  "wardrobes": [
+    {
+      "wardrobe_id": "dev",
+      "person_id": "synthetic-person",
+      "partition": "development"
+    },
+    {
+      "wardrobe_id": "test",
+      "person_id": "synthetic-person",
+      "partition": "test"
+    }
+  ],
+  "images": [
+    {
+      "image_id": "dev-top-a",
+      "path": "standins/dev-top-a.txt",
+      "sha256": "e75d3be93d02d281f267af737411267ed660550ff5d6fa1d8268d199f4d4a692",
+      "kind": "garment",
+      "partition": "development",
+      "provenance": "authored synthetic text stand-in",
+      "permission_reference": "synthetic engineering fixture authored for this repository",
+      "permitted_use": "synthetic-engineering",
+      "capture_group": "dev-top-a",
+      "source_group": "dev-top-a",
+      "parent_image_id": null
+    },
+    {
+      "image_id": "dev-top-b",
+      "path": "standins/dev-top-b.txt",
+      "sha256": "fd42e3ad74d1e4481c18ca0c31e618907fb8824b0407a1a4aefc18dbdf889d95",
+      "kind": "garment",
+      "partition": "development",
+      "provenance": "authored synthetic text stand-in",
+      "permission_reference": "synthetic engineering fixture authored for this repository",
+      "permitted_use": "synthetic-engineering",
+      "capture_group": "dev-top-b",
+      "source_group": "dev-top-b",
+      "parent_image_id": null
+    },
+    {
+      "image_id": "dev-jeans",
+      "path": "standins/dev-jeans.txt",
+      "sha256": "d9fcaa65270ff90d5b18497799242dc31f4bf451197817ac924a2e9a8c9f4193",
+      "kind": "garment",
+      "partition": "development",
+      "provenance": "authored synthetic text stand-in",
+      "permission_reference": "synthetic engineering fixture authored for this repository",
+      "permitted_use": "synthetic-engineering",
+      "capture_group": "dev-jeans",
+      "source_group": "dev-jeans",
+      "parent_image_id": null
+    },
+    {
+      "image_id": "dev-coat",
+      "path": "standins/dev-coat.txt",
+      "sha256": "ee53c4aa58545cb0c738f17436d66f05b8c97d39f236179e4738ba22e22de296",
+      "kind": "garment",
+      "partition": "development",
+      "provenance": "authored synthetic text stand-in",
+      "permission_reference": "synthetic engineering fixture authored for this repository",
+      "permitted_use": "synthetic-engineering",
+      "capture_group": "dev-coat",
+      "source_group": "dev-coat",
+      "parent_image_id": null
+    },
+    {
+      "image_id": "test-top-a",
+      "path": "standins/test-top-a.txt",
+      "sha256": "a01c8304e32ac06f806a875de34625ea076a86b014a73d4964f5d1312a6d48b2",
+      "kind": "garment",
+      "partition": "test",
+      "provenance": "authored synthetic text stand-in",
+      "permission_reference": "synthetic engineering fixture authored for this repository",
+      "permitted_use": "synthetic-engineering",
+      "capture_group": "test-top-a",
+      "source_group": "test-top-a",
+      "parent_image_id": null
+    },
+    {
+      "image_id": "test-coat",
+      "path": "standins/test-coat.txt",
+      "sha256": "2a46266d65675239e2edb488f1dc34b6dbcc319d01b5477ad9b67656bf63070e",
+      "kind": "garment",
+      "partition": "test",
+      "provenance": "authored synthetic text stand-in",
+      "permission_reference": "synthetic engineering fixture authored for this repository",
+      "permitted_use": "synthetic-engineering",
+      "capture_group": "test-coat",
+      "source_group": "test-coat",
+      "parent_image_id": null
+    },
+    {
+      "image_id": "dev-inspiration",
+      "path": "standins/dev-inspiration.txt",
+      "sha256": "a4583c400ae4716172af37fcd0968576c9e6220772c5a2eeb886ab9d93857db4",
+      "kind": "inspiration",
+      "partition": "development",
+      "provenance": "authored synthetic text stand-in",
+      "permission_reference": "synthetic engineering fixture authored for this repository",
+      "permitted_use": "synthetic-engineering",
+      "capture_group": "dev-inspiration",
+      "source_group": "dev-inspiration",
+      "parent_image_id": null
+    },
+    {
+      "image_id": "test-inspiration",
+      "path": "standins/test-inspiration.txt",
+      "sha256": "aa436887928e36f60f0cdf8b8d1ccaa19d47bb56fc69d15739d6bfc2cfc12e82",
+      "kind": "inspiration",
+      "partition": "test",
+      "provenance": "authored synthetic text stand-in",
+      "permission_reference": "synthetic engineering fixture authored for this repository",
+      "permitted_use": "synthetic-engineering",
+      "capture_group": "test-inspiration",
+      "source_group": "test-inspiration",
+      "parent_image_id": null
+    },
+    {
+      "image_id": "dev-crop",
+      "path": "standins/dev-crop.txt",
+      "sha256": "5f8a07cfd297f1bb18178df9861a9ba784bd904f0083659524a65ebb3ff9cd90",
+      "kind": "crop",
+      "partition": "development",
+      "provenance": "authored synthetic text stand-in",
+      "permission_reference": "synthetic engineering fixture authored for this repository",
+      "permitted_use": "synthetic-engineering",
+      "capture_group": "dev-inspiration",
+      "source_group": "dev-inspiration",
+      "parent_image_id": "dev-inspiration"
+    }
+  ],
+  "garments": [
+    {
+      "ref": {
+        "wardrobe_id": "dev",
+        "item_id": "top-a"
+      },
+      "category": "tops",
+      "image_ids": [
+        "dev-top-a"
+      ]
+    },
+    {
+      "ref": {
+        "wardrobe_id": "dev",
+        "item_id": "top-b"
+      },
+      "category": "tops",
+      "image_ids": [
+        "dev-top-b"
+      ]
+    },
+    {
+      "ref": {
+        "wardrobe_id": "dev",
+        "item_id": "jeans"
+      },
+      "category": "bottoms",
+      "image_ids": [
+        "dev-jeans"
+      ]
+    },
+    {
+      "ref": {
+        "wardrobe_id": "dev",
+        "item_id": "coat"
+      },
+      "category": "outerwear",
+      "image_ids": [
+        "dev-coat"
+      ]
+    },
+    {
+      "ref": {
+        "wardrobe_id": "test",
+        "item_id": "top-a"
+      },
+      "category": "tops",
+      "image_ids": [
+        "test-top-a"
+      ]
+    },
+    {
+      "ref": {
+        "wardrobe_id": "test",
+        "item_id": "coat"
+      },
+      "category": "outerwear",
+      "image_ids": [
+        "test-coat"
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "query_id": "dev-top",
+      "active_wardrobe_id": "dev",
+      "image_id": "dev-inspiration",
+      "component_category": "tops",
+      "partition": "development",
+      "crop_image_id": "dev-crop"
+    },
+    {
+      "query_id": "dev-none",
+      "active_wardrobe_id": "dev",
+      "image_id": "dev-inspiration",
+      "component_category": "outerwear",
+      "partition": "development",
+      "crop_image_id": null
+    },
+    {
+      "query_id": "test-top",
+      "active_wardrobe_id": "test",
+      "image_id": "test-inspiration",
+      "component_category": "tops",
+      "partition": "test",
+      "crop_image_id": null
+    },
+    {
+      "query_id": "test-empty",
+      "active_wardrobe_id": "test",
+      "image_id": "test-inspiration",
+      "component_category": "bottoms",
+      "partition": "test",
+      "crop_image_id": null
+    },
+    {
+      "query_id": "test-partial",
+      "active_wardrobe_id": "test",
+      "image_id": "test-inspiration",
+      "component_category": "outerwear",
+      "partition": "test",
+      "crop_image_id": null
+    },
+    {
+      "query_id": "test-coat",
+      "active_wardrobe_id": "test",
+      "image_id": "test-inspiration",
+      "component_category": "outerwear",
+      "partition": "test",
+      "crop_image_id": null
+    }
+  ],
+  "judgments": [
+    {
+      "query_id": "dev-top",
+      "reviewer_id": "synthetic-author",
+      "no_match": false,
+      "uncertain": false,
+      "notes": "Synthetic engineering labels; not human feasibility evidence.",
+      "grades": [
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "top-a"
+          },
+          "relevance": 3
+        },
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "top-b"
+          },
+          "relevance": 2
+        }
+      ]
+    },
+    {
+      "query_id": "dev-none",
+      "reviewer_id": "synthetic-author",
+      "no_match": true,
+      "uncertain": false,
+      "notes": "Synthetic engineering labels; not human feasibility evidence.",
+      "grades": [
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "coat"
+          },
+          "relevance": 0
+        }
+      ]
+    },
+    {
+      "query_id": "test-top",
+      "reviewer_id": "synthetic-author",
+      "no_match": false,
+      "uncertain": false,
+      "notes": "Synthetic engineering labels; not human feasibility evidence.",
+      "grades": [
+        {
+          "ref": {
+            "wardrobe_id": "test",
+            "item_id": "top-a"
+          },
+          "relevance": 2
+        }
+      ]
+    },
+    {
+      "query_id": "test-empty",
+      "reviewer_id": "synthetic-author",
+      "no_match": true,
+      "uncertain": false,
+      "notes": "Synthetic engineering labels; not human feasibility evidence.",
+      "grades": []
+    },
+    {
+      "query_id": "test-partial",
+      "reviewer_id": "synthetic-author",
+      "no_match": true,
+      "uncertain": false,
+      "notes": "Synthetic engineering labels; not human feasibility evidence.",
+      "grades": [
+        {
+          "ref": {
+            "wardrobe_id": "test",
+            "item_id": "coat"
+          },
+          "relevance": 1
+        }
+      ]
+    },
+    {
+      "query_id": "test-coat",
+      "reviewer_id": "synthetic-author",
+      "no_match": false,
+      "uncertain": false,
+      "notes": "Synthetic engineering labels; not human feasibility evidence.",
+      "grades": [
+        {
+          "ref": {
+            "wardrobe_id": "test",
+            "item_id": "coat"
+          },
+          "relevance": 3
+        }
+      ]
+    }
+  ]
+}

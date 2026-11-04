@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "run_id": "synthetic-hand-ranked-v1",
+  "dataset_id": "synthetic-v1",
+  "dataset_sha256": "8e642afed15182f2d351f0c3a4deaf8d797d42c04b8664e04a846514c016c3b0",
+  "status": "complete",
+  "failures": [],
+  "model": {
+    "name": "synthetic-hand-ranking",
+    "checkpoint": "none-no-model",
+    "revision": "fixture-v1",
+    "preprocessing": "none-text-standins",
+    "dependency_lock_sha256": null,
+    "notes": "No model executed. Rankings authored by fixture generator; no model dependency lock."
+  },
+  "threshold": null,
+  "threshold_selection_partition": "development",
+  "resources": {
+    "device": "none-no-model-execution",
+    "wall_time_ms": null,
+    "peak_ram_bytes": null,
+    "peak_vram_bytes": null,
+    "missing_reasons": {
+      "wall_time_ms": "No model executed; engineering fixture only.",
+      "peak_ram_bytes": "No model executed; engineering fixture only.",
+      "peak_vram_bytes": "No model executed; engineering fixture only."
+    }
+  },
+  "rankings": [
+    {
+      "query_id": "dev-top",
+      "predictions": [
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "unknown"
+          },
+          "score": null
+        },
+        {
+          "ref": {
+            "wardrobe_id": "test",
+            "item_id": "top-a"
+          },
+          "score": null
+        },
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "jeans"
+          },
+          "score": null
+        },
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "top-a"
+          },
+          "score": null
+        },
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "top-a"
+          },
+          "score": null
+        },
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "top-b"
+          },
+          "score": null
+        }
+      ]
+    },
+    {
+      "query_id": "dev-none",
+      "predictions": [
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "coat"
+          },
+          "score": null
+        }
+      ]
+    },
+    {
+      "query_id": "test-top",
+      "predictions": []
+    },
+    {
+      "query_id": "test-empty",
+      "predictions": [
+        {
+          "ref": {
+            "wardrobe_id": "dev",
+            "item_id": "jeans"
+          },
+          "score": null
+        }
+      ]
+    },
+    {
+      "query_id": "test-partial",
+      "predictions": []
+    },
+    {
+      "query_id": "test-coat",
+      "predictions": [
+        {
+          "ref": {
+            "wardrobe_id": "test",
+            "item_id": "coat"
+          },
+          "score": null
+        }
+      ]
+    }
+  ]
+}
