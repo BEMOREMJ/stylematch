@@ -19,7 +19,8 @@ def require(condition: bool, message: str) -> None:
         raise ValueError(message)
 
 
-def validate_dataset(dataset: Dataset) -> dict:
+def validate_dataset(dataset: Dataset, *, require_judgments: bool = True) -> dict:
+    """Use require_judgments=False only for preparation; scoring uses the strict default."""
     wardrobes = {w.wardrobe_id: w for w in dataset.wardrobes}
     unique((w.wardrobe_id for w in dataset.wardrobes), "wardrobe IDs")
     images = {i.image_id: i for i in dataset.images}
@@ -30,7 +31,10 @@ def validate_dataset(dataset: Dataset) -> dict:
     queries = {q.query_id: q for q in dataset.queries}
     unique((q.query_id for q in dataset.queries), "query IDs")
     unique((j.query_id for j in dataset.judgments), "canonical judgment query IDs")
-    require({j.query_id for j in dataset.judgments} == set(queries), "incomplete/unknown query judgments")
+    label_ids = {j.query_id for j in dataset.judgments}
+    require(label_ids <= set(queries), "unknown query judgments")
+    if require_judgments:
+        require(label_ids == set(queries), "incomplete/unknown query judgments")
 
     for field in ("sha256", "capture_group", "source_group"):
         partitions = defaultdict(set)
@@ -48,6 +52,10 @@ def validate_dataset(dataset: Dataset) -> dict:
             require(parent.partition == image.partition, "crop parent partition mismatch")
             require(parent.source_group == image.source_group, "crop must retain source group")
             require(parent.capture_group == image.capture_group, "crop must retain capture group")
+            if image.crop_box is not None:
+                require(parent.width_px is not None, "crop parent dimensions required")
+                require(image.crop_box[2] <= parent.width_px and image.crop_box[3] <= parent.height_px,
+                        "crop bounds exceed parent dimensions")
         else:
             require(image.parent_image_id is None, "only crops may declare a parent")
     image_owners = {}
@@ -91,6 +99,7 @@ def validate_dataset(dataset: Dataset) -> dict:
         "person_partition_overlap": sorted(p for p, splits in people.items() if len(splits) > 1),
         "wardrobes": len(wardrobes), "garments": len(items), "images": len(images),
         "queries": len(queries), "no_match_queries": sum(j.no_match for j in dataset.judgments),
+        "judgments": len(dataset.judgments), "labels_complete": label_ids == set(queries),
         "leakage_checks": ["sha256", "capture_group", "source_group"],
         "near_duplicate_detection": "not performed; hashes detect exact bytes only",
     }

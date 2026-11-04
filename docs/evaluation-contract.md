@@ -1,8 +1,10 @@
 # STYLEMATCH-001 draft evaluation contract
 
 Status: **DRAFT / UNAPPROVED / NOT FROZEN**. This document defines a proposed
-experiment, not approval to collect data, select a model, run 001B or begin
-STYLEMATCH-002. Only the 001A foundation has been implemented.
+final-study experiment. The owner separately authorized 001B development
+preparation and local use of their own garment photos. Specific handling and
+inspiration approvals and actual photographs remain pending; the real pilot is
+incomplete. No model selection, final-test collection or STYLEMATCH-002 is authorized.
 
 ## Task and boundaries
 
@@ -75,8 +77,12 @@ identity, uncertainty and short rationale; compare candidate grades and no-match
 decisions. Preserve both original reviews privately. Resolve disagreement through
 discussion or a separately identified adjudicator; document the resolution and
 canonical reviewer identity. Unresolved tasks remain uncertain and unscorable.
-Reviewer availability and disagreement sampling remain decisions for the pilot;
-do not silently treat one person's repeated labels as independent reviewers.
+Final-study reviewer availability and disagreement sampling remain pending;
+do not treat one person's repeated labels as independent reviewers.
+For the initial 001B development pilot, the owner is the one actual reviewer.
+Uncertainty remains explicit; repeated passes can inform within-reviewer
+consistency only. Independent review/adjudication for the final study remains
+pending, rather than being claimed for this single-reviewer pilot.
 
 ## Split and sealing policy
 
@@ -134,9 +140,10 @@ average. Compare runs on the same complete tasks; log every failure/exclusion.
 
 CPU/GPU/RAM, latency, model-loading time, storage, embedding/caching cost and
 annotation effort need an intended-machine measurement plan. Resource budgets
-are **PENDING intended-machine evidence**, with no invented numeric limits.
-Current host inventory is evidence about an accessible host only. Record exact
-device/software, warm versus cold runs, batch size, repetitions, timing method,
+are **PENDING intended-machine measurements and agreement**, with no invented limits.
+The owner confirmed the inventoried laptop as the initial target in 001B; no model
+measurements have occurred. Record exact device/software, warm versus cold runs,
+batch size, repetitions, timing method,
 peak-memory method and missing measurements. No engineering fixture can pass a
 model RAM or latency budget. Failed runs need reasons and remain unscored;
 missing resource values remain null with reasons. Define the final repeated-run

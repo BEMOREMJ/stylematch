@@ -13,7 +13,7 @@ import sys
 def inventory():
     report = {
         "captured_at_utc": datetime.now(timezone.utc).isoformat(),
-        "intended_inference_machine": "unconfirmed; accessible execution host only",
+        "intended_inference_machine": "see docs/environment.md for owner-confirmed target; this inventory does not establish host identity",
         "os": platform.platform(), "architecture": platform.machine(),
         "logical_processors": os.cpu_count(), "python": sys.version,
         "disk_bytes": shutil.disk_usage(".")._asdict(),

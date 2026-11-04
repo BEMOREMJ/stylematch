@@ -2,8 +2,9 @@
 
 Observed 2026-11-04 at 14:43:50 Africa/Nairobi (11:43:50 UTC), using
 `.venv\Scripts\python.exe scripts/inventory.py`. Availability values are snapshots.
-**Whether this host is the intended inference machine is unconfirmed.** This is
-not a claim about a user's laptop or an available model execution budget.
+At 001A this host's intended-machine status was unconfirmed. For 001B, the owner
+**confirmed this inventoried Windows laptop as the intended initial inference
+machine**. This confirmation does not establish a model execution budget.
 
 | Field | Observed evidence |
 | --- | --- |
@@ -36,6 +37,8 @@ not inspect an existing user-wide pytest temp directory. Pytest now uses the
 ignored workspace `.pytest_cache/tmp`; the subsequent complete run passed. This
 was a test-environment failure, not a model experiment or resource result.
 
-No model RAM, latency, VRAM or throughput measurements were made. Intended-machine
-identity, device support, background load, storage headroom and approved resource
-budgets must be established before the next experiment stage.
+No model RAM, latency, VRAM or throughput measurements were made. Device support,
+background load, storage headroom and approved resource budgets remain to be
+established before model experiments. The 001B owner confirmation resolves
+intended-machine identity only. Pillow was added for preparation; exact current
+dependencies remain in `uv.lock`.

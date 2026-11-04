@@ -42,6 +42,21 @@ class Image(Contract):
     capture_group: Identifier
     source_group: Identifier
     parent_image_id: Identifier | None = None
+    width_px: Annotated[int, Field(gt=0)] | None = None
+    height_px: Annotated[int, Field(gt=0)] | None = None
+    crop_box: Annotated[list[Annotated[int, Field(ge=0)]], Field(min_length=4, max_length=4)] | None = None
+
+    @model_validator(mode="after")
+    def dimensions(self) -> "Image":
+        if (self.width_px is None) != (self.height_px is None):
+            raise ValueError("image dimensions must be supplied together")
+        if self.crop_box is not None:
+            left, top, right, bottom = self.crop_box
+            if self.kind != "crop" or left >= right or top >= bottom:
+                raise ValueError("crop box requires a crop and positive area")
+            if self.width_px is None or (right - left, bottom - top) != (self.width_px, self.height_px):
+                raise ValueError("crop dimensions must match crop box")
+        return self
 
     @field_validator("path")
     @classmethod

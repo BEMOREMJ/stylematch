@@ -3,7 +3,10 @@ name = "stylematch-feasibility"
 version = "0.1.0"
 description = "STYLEMATCH-001A experiment contracts and deterministic evaluation"
 requires-python = ">=3.12,<3.13"
-dependencies = ["pydantic>=2.10,<3"]
+dependencies = [
+    "pillow>=11,<14",
+    "pydantic>=2.10,<3",
+]
 
 [dependency-groups]
 dev = ["pytest>=8,<10"]

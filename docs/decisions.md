@@ -20,3 +20,20 @@ Date: 2026-11-04. Scope: experiment foundation and evaluation contract only.
 The implementation does not establish product feasibility. No comparative study,
 real human labeling, private data preparation, resource benchmark or contract
 freeze occurred. Remaining inputs are in [001b-handoff.md](001b-handoff.md).
+
+## 001B development preparation decisions
+
+- Owner confirmed the inventoried Windows laptop as the initial inference target,
+  authorized local study use of their own garment photos, and will be the sole
+  initial reviewer. The workflow enforces one wardrobe and reviewer, without
+  independent-annotation or unseen-person claims.
+- Reuse version 1 contracts with optional dimensions/crop boxes. Unlabeled
+  preparation is explicit; default validation/evaluation still requires full labels.
+- Add Pillow as the only image dependency; use new ignored folders, exclusive
+  file creation, oriented metadata-free PNGs, and source hashes. No original moves,
+  overwrites, deletion, photo uploads or inference.
+- Use reproducibly shuffled CSVs with explicit unknown/uncertain states, exhaustive
+  human labels, observable attribute candidates and measured/missing human effort.
+- The owner has not photographed the clothes yet. Original location, handling
+  approval and inspiration permissions remain pending; only preparation engineering
+  is delivered. No contract freeze, model experiments or later stage is authorized.

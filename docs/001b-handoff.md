@@ -1,23 +1,27 @@
-# Remaining inputs before STYLEMATCH-001B
+# STYLEMATCH-001B remaining owner inputs
 
-001A stops at the validated engineering foundation. 001B is not started or
-authorized by these documents. STYLEMATCH-002 remains outside scope.
+001B preparation is authorized and implemented. The owner has not yet photographed
+the garments; **the real-data pilot is incomplete**. Use the
+[development workflow](development-pilot.md). No model work or STYLEMATCH-002 is authorized.
 
-- Confirm the intended inference machine and access, collect its actual resource
-  evidence, agree acceptable latency/RAM/storage budgets and measurement protocol.
-- Obtain explicit authorization for 001B and any private capture/preparation;
-  identify wardrobe owners, allowed inspiration sources and permitted uses.
+- The intended machine is the inventoried Windows laptop; local study use of
+  own-garment photos is authorized. The owner is the sole initial reviewer.
+- Photograph available garments and identify owned/explicitly permitted outfit
+  inspirations. Supply the actual private originals folder outside Git.
 - Approve data location, access list, source-preservation permissions, retention
   period, backup/deletion policy and withdrawal procedure before collecting data.
 - Review the **PROVISIONAL / UNAPPROVED** dataset scale, split allocation,
   no-match allocation and performance targets; determine feasible category counts.
-- Recruit reviewers/adjudicator and pilot capture rules, category boundaries,
-  relevance agreement and workload on development only.
+- Capture and label the development pilot as the one actual reviewer; record
+  uncertainty and human effort. Do not claim independent annotation.
 - Establish observable attribute fields, reliability and field-level gates from
   that pilot; choose rule baseline scoring and keep effort in the comparison.
-- Verify exact candidate checkpoints, official sources, licenses, preprocessing,
+- Before later 001C/001D adoption, verify candidate checkpoints, official sources,
+  licenses, preprocessing,
   embedding dimensions, dependency/device compatibility and resource evidence.
-  No candidate is currently selected or approved for download.
+  No candidate is currently selected or approved for download. This does not block
+  preparation. Final latency/RAM budgets remain pending and are not required to
+  build this workflow.
 - Prepare authorized local sanitized copies/human crops; build private manifests
   and exhaustive resolved labels; run file/hash and capture/source leakage checks
   plus manual near-duplicate auditing; report actual person overlap.
@@ -27,6 +31,7 @@ authorized by these documents. STYLEMATCH-002 remains outside scope.
   after review and record immutable hashes, code/dependency revisions, thresholds,
   approvals and any deviations before final-test inference.
 
-Recommended next action: review these inputs and the draft contract with the
-owner, then authorize a narrowly scoped development pilot. Do not interpret
+Recommended next action: capture photos, approve/amend handling, establish
+inspiration permissions, then use the local registration/review workflow. Do not
+interpret
 synthetic metric values or passing tests as evidence that the product works.

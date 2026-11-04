@@ -2,8 +2,14 @@
 
 STYLEMATCH helps recreate an inspiration look with clothing already owned.
 **STYLEMATCH-001A is an engineering foundation, not evidence of feasibility.**
-Only the ML feasibility study is authorized. The evaluation contract is a draft,
-unapproved and unfrozen. No real data, weights or model experiments are included.
+001B development preparation is authorized; its real-image pilot is incomplete.
+The evaluation contract remains a draft, unapproved and unfrozen. No real data,
+weights or model experiments are included in this public repository.
+
+Use the [local development-pilot workflow](docs/development-pilot.md) to register
+originals, prepare sanitized copies/crops and collect exhaustive human labels.
+Photographs have not yet been supplied. Real processing awaits their location,
+handling approval and per-inspiration permission records.
 
 ## Setup and checks
 
@@ -41,6 +47,8 @@ that provisional performance targets passed.
 - `stylematch/validation.py`: membership, labels, split groups and file hashes.
 - `stylematch/evaluation.py`: deterministic raw/validated metrics and counts.
 - `stylematch/__main__.py`: read-only JSON evaluation command.
+- `stylematch/pilot.py`, `preparation.py`, `labeling.py`: local registration,
+  oriented metadata-free PNG copies, human crops, CSV review and validated import.
 - `tests/`: hand-computed metric checks and deliberately invalid synthetic inputs.
 - `scripts/inventory.py`: read-only environment discovery, with limitations.
 - [Data and metric semantics](docs/data-and-metrics.md).
@@ -70,7 +78,9 @@ uv run --locked python tests/fixtures/synthetic/build_fixture.py
 `--image-root` verifies paths and file SHA-256, including these text stand-ins.
 Without it, references and leakage are still checked against the manifest, but
 file existence and bytes are not checked. Real-data evaluation must use it after
-private, authorized preparation. No decoding or near-duplicate detection occurs.
+private, authorized preparation. The evaluation command does not decode images;
+the pilot `check` command additionally checks decoding, dimensions and metadata.
+Neither command detects all near-duplicates.
 LF text normalization in `.gitattributes` preserves fixture hash reproducibility.
 
 Personal images, labels containing personal details, embeddings, model weights,

@@ -6,6 +6,10 @@ reports use `report_schema_version: 1`. Future incompatible changes need a new
 version and reviewed migration. The checked-in synthetic JSON is a complete
 example, not a real dataset. JSON schemas can be obtained from
 `Dataset.model_json_schema()` and `Run.model_json_schema()` when needed.
+001B adds optional paired `width_px`/`height_px` and `crop_box` to image records;
+existing 001A manifests remain compatible. Real pilot images require dimensions;
+pilot crops require `[left, top, right, bottom]` in oriented pixels with exclusive
+right/bottom, matching crop dimensions and fitting inside the parent.
 
 ## Identities and manifests
 
@@ -43,6 +47,11 @@ Missing labels fail evaluation; they never become negatives. Provisional or
 disputed labels may be recorded with `uncertain: true`, but cannot be scored.
 Independent reviewer records and adjudication history stay in private labeling
 records; the evaluator consumes their final canonical judgment.
+Preparation may explicitly call `validate_dataset(..., require_judgments=False)`
+to check an unlabeled manifest. The default and all evaluation calls still require
+complete, resolved judgments. This option does not make missing grades negative.
+The CSV workflow and private reviewer/effort audit are documented in
+[development-pilot.md](development-pilot.md).
 
 | Grade | Meaning | Relevant for Hit/Recall? |
 | --- | --- | --- |
