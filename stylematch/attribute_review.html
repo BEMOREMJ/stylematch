@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'">
+<title>Private garment attribute review</title>
+<style>
+body{font:17px system-ui;margin:24px;background:#f5f4f0;color:#202b2a}main{max-width:1100px;margin:auto}h1{font-size:25px}pre{white-space:pre-wrap;font:15px system-ui}section{display:flex;gap:24px;flex-wrap:wrap}img{width:min(650px,100%);height:65vh;object-fit:contain;background:#ddd}label{display:block;margin:18px 0}select,button{font:inherit;padding:10px}button{margin:5px}#status{white-space:pre-wrap}aside{flex:1;min-width:240px}
+</style>
+<main><h1>Private garment attribute review</h1><p>Mark's labels · 28 local images · no model predictions</p>
+<details><summary>Vocabulary, examples and ambiguity rules</summary><pre id="guide"></pre></details>
+<p id="progress"></p><section><img id="photo" alt="Current garment view"><aside id="fields"></aside></section>
+<button id="prev">Previous</button><button id="next">Next</button><button id="pause">Start timing</button>
+<button id="save">Save progress / completed labels</button><label>Resume from saved JSON <input id="resume" type="file" accept=".json"></label>
+<p>Save a backup before closing. The timer measures only time while this page is visible and timing is started. Pause for breaks. You can also leave effort unmeasured.</p><p id="status" role="status"></p></main>
+<script>
+const D=/*PAYLOAD*/null;
+let index=0,labels=D.items.map(x=>({id:x.id,...Object.fromEntries(Object.keys(D.vocabulary).map(k=>[k,""]))})),seconds=0,running=false,last=performance.now(),measured=false;
+const $=id=>document.getElementById(id);
+$("guide").textContent=D.guide;
+function tick(){const now=performance.now();if(running&&!document.hidden)seconds+=(now-last)/1000;last=now;}
+setInterval(tick,500);document.addEventListener('visibilitychange',tick);
+function render(){const item=D.items[index];$("photo").src=item.src;$("progress").textContent=`Image ${index+1} of ${D.items.length} · ${item.id} · ${labels.filter(r=>Object.keys(D.vocabulary).every(k=>r[k])).length} completed`;$("fields").replaceChildren();
+ for(const [key,choices] of Object.entries(D.vocabulary)){const lab=document.createElement('label');lab.textContent=({garment_type:'Garment type',color:'Main visible color',pattern:'Pattern'})[key];const s=document.createElement('select');s.setAttribute('aria-label',lab.textContent);for(const v of ['',...choices]){const o=document.createElement('option');o.value=v;o.textContent=v||'Choose a label';s.append(o);}s.value=labels[index][key];s.onchange=()=>{labels[index][key]=s.value;render();};lab.append(s);$("fields").append(lab);}$("prev").disabled=index===0;$("next").disabled=index===D.items.length-1;}
+$("prev").onclick=()=>{index--;render()};$("next").onclick=()=>{index++;render()};
+$("pause").onclick=()=>{tick();running=!running;measured=true;$("pause").textContent=running?'Pause timing':'Resume timing';};
+$("save").onclick=()=>{tick();const complete=labels.every(r=>Object.keys(D.vocabulary).every(k=>D.vocabulary[k].includes(r[k])));if(complete&&!confirm('Mark: confirm these are your completed reference labels?'))return;const data={bundle:D.bundle,completed_by:complete?'Mark':null,labels,annotation_seconds:measured?seconds:null,effort_method:measured?'visible-page active timer; owner pauses breaks':'unknown; not measured'};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)+'\n'],{type:'application/json'}));a.download='001d-attribute-labels.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);$("status").textContent=complete?'Completed labels saved. Move the JSON into this review folder and tell Codex its path.':'Progress saved. Use Resume to load this JSON later.';};
+$("resume").onchange=async e=>{try{const d=JSON.parse(await e.target.files[0].text());if(d.bundle!==D.bundle||d.labels.length!==labels.length||d.labels.some((r,i)=>r.id!==labels[i].id||Object.keys(D.vocabulary).some(k=>r[k]!==''&&!D.vocabulary[k].includes(r[k]))))throw Error('Different or invalid review bundle');labels=d.labels;seconds=d.annotation_seconds??0;measured=d.annotation_seconds!==null;index=0;render();$("status").textContent='Saved labels resumed.';}catch(e){$("status").textContent=e.message;}};
+window.addEventListener('beforeunload',e=>{e.preventDefault();e.returnValue='Save your progress before leaving.'});render();
+</script></html>

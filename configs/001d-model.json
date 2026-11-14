@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "candidate": "SmolVLM-256M-Instruct Q8_0",
+  "repository": "ggml-org/SmolVLM-256M-Instruct-GGUF",
+  "revision": "b9e4379657e1450d04d02eec8e345667265b0a00",
+  "upstream_repository": "HuggingFaceTB/SmolVLM-256M-Instruct",
+  "upstream_revision": "d039ab0d4b9311b617e8ffec1d06c8464364aeb3",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "name": "SmolVLM-256M-Instruct-Q8_0.gguf",
+      "bytes": 175054528,
+      "sha256": "2a31195d3769c0b0fd0a4906201666108834848db768af11de1d2cef7cd35e65"
+    },
+    {
+      "name": "mmproj-SmolVLM-256M-Instruct-Q8_0.gguf",
+      "bytes": 103769856,
+      "sha256": "7e943f7c53f0382a6fc41b6ee0c2def63ba4fded9ab8ed039cc9e2ab905e0edd"
+    }
+  ],
+  "runtime": {
+    "repository": "ggml-org/llama.cpp",
+    "tag": "b7350",
+    "commit": "4dff236a522bd0ed949331d6cb1ee2a1b3615c35",
+    "archive": "llama-b7350-bin-win-cpu-x64.zip",
+    "bytes": 18612597,
+    "sha256": "9c4fe03512bbfc4b317900efd600f9f99952dff23ef353ca9e77ccdda84ff575",
+    "license": "MIT"
+  }
+}

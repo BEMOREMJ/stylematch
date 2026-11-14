@@ -12,6 +12,8 @@ originals, prepare sanitized copies/crops and collect exhaustive human labels.
 The accepted private pilot and its permissions stay in ignored local storage.
 Use the [development benchmark protocol](docs/development-benchmarks.md) and
 [encoder verification](docs/001c-candidate.md) for the 001C comparison.
+Use the [style interpretation workflow](docs/style-interpretation.md) for 001D's
+separate private attribute review and guarded local VLM evaluation.
 
 ## Setup and checks
 
