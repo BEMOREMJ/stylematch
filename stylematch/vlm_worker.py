@@ -79,7 +79,7 @@ def measure(payloads, output, protocol):
                         "extracted runtime differs from pinned archive")
     executables = list((models / "runtime").rglob("llama-server.exe"))
     require(len(executables) == 1, "expected one extracted official server")
-    # Bind a free loopback port; if another process races, health PID guard below refuses it.
+    # Choose a free loopback port; native bind failures remain in the server log.
     import socket
     with socket.socket() as listener:
         listener.bind(("127.0.0.1", 0))

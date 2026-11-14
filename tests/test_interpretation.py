@@ -5,7 +5,7 @@ import json
 
 import pytest
 
-from stylematch.interpretation import VOCAB, import_reference, parse_prediction, score
+from stylematch.interpretation import VOCAB, import_descriptions, import_reference, parse_prediction, score
 from stylematch.vlm_worker import png_payload
 from PIL import Image
 
@@ -95,3 +95,24 @@ def test_input_resizing_retains_whole_view_and_no_upscale():
         value = png_payload(image, 512)
         with Image.open(BytesIO(base64.b64decode(value.split(",")[1]))) as decoded:
             assert decoded.size == expected and decoded.mode == "RGB" and not decoded.info
+
+
+def test_description_checks_remain_owner_supplied_and_bound(tmp_path, monkeypatch):
+    monkeypatch.setattr("stylematch.interpretation.private_path", lambda p: p)
+    monkeypatch.setattr("stylematch.preparation.private_path", lambda p: p)
+    run = tmp_path / "run"
+    run.mkdir()
+    expected = run / "description-review.json"
+    expected.write_text(json.dumps({"items": [{"id": "a", "description": "Blue shorts."},
+                                             {"id": "b", "description": None}]}))
+    labels = tmp_path / "checks.json"
+    document = {"binding": sha256(expected.read_bytes()).hexdigest(), "completed_by": "Mark", "items": [
+        {"id": "a", "unsupported": "true", "notes": "Synthetic: color is not visible."},
+        {"id": "b", "unsupported": "missing", "notes": ""}]}
+    labels.write_text(json.dumps(document))
+    result = import_descriptions(run, labels, tmp_path / "preserved.json")
+    assert result["counts"] == {"true": 1, "false": 0, "unknown": 0, "missing": 1}
+    document["items"][1]["unsupported"] = "false"
+    labels.write_text(json.dumps(document))
+    with pytest.raises(ValueError, match="contradicts"):
+        import_descriptions(run, labels, tmp_path / "invalid.json")
