@@ -1,5 +1,8 @@
 # STYLEMATCH-001A decision log
 
+This file preserves historical stage decisions. Current 001C authorization and
+methodology are recorded in [development-benchmarks.md](development-benchmarks.md).
+
 Date: 2026-11-04. Scope: experiment foundation and evaluation contract only.
 
 | Decision | Evidence / reason |
@@ -37,3 +40,22 @@ freeze occurred. Remaining inputs are in [001b-handoff.md](001b-handoff.md).
 - The owner has not photographed the clothes yet. Original location, handling
   approval and inspiration permissions remain pending; only preparation engineering
   is delivered. No contract freeze, model experiments or later stage is authorized.
+
+## 001C development comparison decisions — 2026-11-14
+
+- Subsequent owner handling/permission decisions, private preparation, confirmed
+  human crops and accepted exhaustive labels supersede the pending owner-input
+  status above. Keep those records and all personal data outside Git.
+- The owner authorized development retrieval baselines and one officially
+  verified encoder on the confirmed laptop. Record the protocol before scoring,
+  preserve the existing evaluator, and keep final-study targets open.
+- Add a category-only uniform-order comparison with exact chance expectations;
+  require independent observed human attributes for the assisted rule baseline.
+- Select one small pinned general ImageNet encoder for initial CPU feasibility;
+  compare full inspirations with confirmed crops using the same cached wardrobe
+  embeddings. Keep labels and no-match flags outside ranking inputs.
+- Primary comparison has no abstention. A separate shared full/crop threshold is
+  explicitly development-tuned, with false acceptances/rejections and coverage.
+- Keep correlated-task/single-reviewer limitations and retained occlusion visible.
+  Resource findings and all real per-task outputs remain private. No later-stage
+  final-test inference, outfit generation or contract freeze is authorized.

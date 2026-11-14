@@ -1,9 +1,10 @@
 # Candidate verification checklist
 
-No model is selected, downloaded or executed. All properties below are **PENDING
-verification**, not claims about compatibility, licenses or performance. This
-checklist is for later authorized evaluation. A family name is not an exact
-checkpoint or an approval to use one.
+The original families below remain unselected. The owner authorized 001C local
+development evaluation on 2026-11-14; the first small encoder has a separate
+[evidence/decision record](001c-candidate.md) and pinned configuration. Items in
+this template are not claims of completed verification for another candidate.
+A family name is not an exact checkpoint or approval to use one.
 
 | Candidate family | Exact checkpoint/revision | Verification status |
 | --- | --- | --- |

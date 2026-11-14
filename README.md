@@ -2,14 +2,16 @@
 
 STYLEMATCH helps recreate an inspiration look with clothing already owned.
 **STYLEMATCH-001A is an engineering foundation, not evidence of feasibility.**
-001B development preparation is authorized; its real-image pilot is incomplete.
+001B local preparation and human-label import are implemented. 001C development
+retrieval comparisons are authorized on the owner-confirmed Windows laptop.
 The evaluation contract remains a draft, unapproved and unfrozen. No real data,
-weights or model experiments are included in this public repository.
+weights, embeddings or private benchmark results are included in this repository.
 
 Use the [local development-pilot workflow](docs/development-pilot.md) to register
 originals, prepare sanitized copies/crops and collect exhaustive human labels.
-Photographs have not yet been supplied. Real processing awaits their location,
-handling approval and per-inspiration permission records.
+The accepted private pilot and its permissions stay in ignored local storage.
+Use the [development benchmark protocol](docs/development-benchmarks.md) and
+[encoder verification](docs/001c-candidate.md) for the 001C comparison.
 
 ## Setup and checks
 

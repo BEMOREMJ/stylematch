@@ -2,9 +2,12 @@
 
 Status: **DRAFT / UNAPPROVED / NOT FROZEN**. This document defines a proposed
 final-study experiment. The owner separately authorized 001B development
-preparation and local use of their own garment photos. Specific handling and
-inspiration approvals and actual photographs remain pending; the real pilot is
-incomplete. No model selection, final-test collection or STYLEMATCH-002 is authorized.
+preparation and local use of their own garment photos. Handling/inspiration
+decisions and accepted human labels are recorded privately. On 2026-11-14 the
+owner authorized the development-only [001C comparison](development-benchmarks.md),
+including one verified local encoder. Final-test collection, contract freeze and
+STYLEMATCH-002 remain outside that authorization. The numeric final-study gates
+below are still provisional; the 001C protocol does not approve them.
 
 ## Task and boundaries
 
@@ -109,7 +112,11 @@ threshold tuning must not access final-test judgments or outcomes. Deviations
 require a logged amendment and a decision about a fresh holdout. **This slice
 does not freeze the contract or establish a sealed dataset.**
 
-## Proposed comparisons, not implemented
+## Proposed comparisons and development implementation
+
+001C implements category-only and paired full-image/crop retrieval under its
+separate recorded development protocol. The assisted rule comparison requires
+independent human attributes. Hybrids and final-study designs below remain proposals.
 
 - Assisted attribute/rule baseline: human-confirmed observable attributes,
   category gating and transparent similarity rules. Measure annotation effort;
@@ -126,7 +133,8 @@ does not freeze the contract or establish a sealed dataset.**
 
 FashionCLIP, SigLIP2 and an unspecified lightweight VLM are candidates only.
 [Candidate checklist](candidate-checklist.md) must be completed before selection.
-No checkpoint is selected, downloaded, wrapped or run in 001A.
+No checkpoint was selected, downloaded, wrapped or run in 001A. See the separate
+[001C candidate decision](001c-candidate.md) for the first authorized local encoder.
 
 ## Reporting and resource decisions
 

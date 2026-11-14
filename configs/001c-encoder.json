@@ -1,0 +1,52 @@
+{
+  "publisher": "ONNX Model Zoo",
+  "checkpoint": "onnxmodelzoo/mobilenetv2-12",
+  "revision": "23a2a25eaaa6fcd61865414c8a1acf13dda66b7a",
+  "architecture": "mobilenetv2-1.0-fp32-opset12",
+  "backend": "onnxruntime-cpu",
+  "filename": "mobilenetv2-12.onnx",
+  "publisher_files": [
+    "README.md",
+    "mobilenetv2-12.onnx"
+  ],
+  "weight_sha256": "c0c3f76d93fa3fd6580652a45618618a220fced18babf65774ed169de0432ad5",
+  "weight_bytes": 13964571,
+  "weight_license": "Apache-2.0 (ONNX Model Zoo publisher card and repository)",
+  "feature_dimension": 1280,
+  "input_size": [
+    3,
+    224,
+    224
+  ],
+  "interpolation": "bilinear",
+  "crop_pct": 0.875,
+  "crop_mode": "center",
+  "mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "pooling": "Expose the unique final GlobalAveragePool before the classifier, flatten 1280 features and L2 normalize. Extract its ancestor graph without changing weights. Average normalized vectors then normalize for multi-image garments.",
+  "dtype": "float32",
+  "device": "cpu",
+  "dependencies": {
+    "onnxruntime": "1.23.2",
+    "onnx": "1.20.1",
+    "numpy": "2.5.4"
+  },
+  "source_date": "2026-11-14",
+  "selection_amendment": "Before encoder scores: timm MobileNetV3 not adopted because PyTorch downloads failed from official CPU and PyPI sources. Select smaller CPU ONNX Runtime and official Model Zoo checkpoint. Comparisons, metrics, threshold rule, pools and numeric 2/1 thread settings unchanged; historical torch_threads keys supply ORT thread counts.",
+  "sources": {
+    "model_card": "https://huggingface.co/onnxmodelzoo/mobilenetv2-12/blob/23a2a25eaaa6fcd61865414c8a1acf13dda66b7a/README.md",
+    "preprocessing": "https://github.com/onnx/models/blob/main/validated/vision/classification/imagenet_preprocess.py",
+    "weights_metadata": "https://huggingface.co/api/models/onnxmodelzoo/mobilenetv2-12?blobs=true",
+    "cpu_install": "https://onnxruntime.ai/docs/install/#install-onnx-runtime-cpu",
+    "runtime_license": "https://github.com/microsoft/onnxruntime/blob/v1.23.2/LICENSE",
+    "onnx_license": "https://github.com/onnx/onnx/blob/v1.20.1/LICENSE"
+  }
+}
