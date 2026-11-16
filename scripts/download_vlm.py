@@ -99,7 +99,7 @@ def main():
             entry = {"name": path.name, "url": url}
             ledger["artifacts"].append(entry)
             if not path.exists():
-                if "--ranged" in sys.argv and path.suffix == ".gguf":
+                if "--ranged" in sys.argv:
                     ranged_download(url, path, artifact)
                     entry["transfer"] = "1 MiB ranges, eight workers, three attempts, 20-second socket timeout, 600-second artifact ceiling"
                 else:
