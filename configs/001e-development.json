@@ -1,0 +1,22 @@
+{
+  "protocol_version": 1,
+  "stage": "STYLEMATCH-001E part 1",
+  "recorded_date": "2026-11-16",
+  "timezone": "Africa/Nairobi",
+  "partition": "development",
+  "fields": ["garment_type", "color", "pattern"],
+  "attribute_denominator": 3,
+  "embedding_weight": 0.5,
+  "attribute_weight": 0.5,
+  "embedding_threshold": 0.60,
+  "ks": [1, 3, 5],
+  "category_seed": 104729,
+  "runtime_repetitions": 100,
+  "rule": "A=sum(exact agreement with both values known)/3, range [0,1]. H=0.5*((crop cosine+1)/2)+0.5*A, range [0,1]. No learned parameters or task-driven rule selection.",
+  "missing": "Missing/unknown on either side contributes zero, including unknown/unknown. Fixed denominator; no renormalization. If all agreements are zero, attribute-only uses ID order and hybrid preserves crop ordering. Missing/nonfinite embedding scores fail closed before scoring; no substitute model.",
+  "ties": "Descending score, then ascending compound wardrobe_id/item_id. No relevance, source paths, filenames, raw VLM prose or notes in scorer inputs.",
+  "ablation": "Remove each field contribution in turn, keeping denominator 3, embedding weight 0.5 and each remaining field weight 1/6 fixed. Diagnostic only; do not select a new rule.",
+  "abstention": "Primary rankings return the full identical pool. Secondary: original full/crop cosine >=0.60 only on original [-1,1] scale. Hybrid uses exactly the crop accept mask, then returns its reranked full pool. This tests ordering only. No attribute or hybrid threshold and no new abstention rule.",
+  "assistance": "Owner-confirmed wardrobe attributes and query attributes labeled on owner-selected crops. Assisted development experiment; SmolVLM had 0/28 valid structured predictions and supplies no ranking features.",
+  "limits": "13 correlated tasks, one wardrobe/reviewer, no fitted weights, no held-out claim. Human annotation effort unknown. Preserve existing files. No downloads/inference. Final-test data sealed or uncollected; final contract open; stage advancement belongs to master roadmap."
+}
