@@ -177,10 +177,18 @@ def import_descriptions(run, labels, output):
         require(row["unsupported"] in ("true", "false", "unknown", "missing"), "unresolved description check")
         require(type(row["notes"]) is str, "invalid description notes")
         require(row["unsupported"] not in ("true", "unknown") or bool(row["notes"].strip()), "unsupported/uncertain detail needs notes")
-        require(bool(item["description"]) == (row["unsupported"] != "missing"), "missing-description status contradicts output")
+        if item.get("text_source") == "unmodified raw model response":
+            # The raw-review UI offers "No valid description" even when malformed
+            # text exists. Preserve that owner judgment; do not equate it with
+            # absence of an execution response or repair the model's schema.
+            require(bool(item["description"]) or row["unsupported"] == "missing",
+                    "absent raw response requires no-valid-description status")
+        else:
+            require(bool(item["description"]) == (row["unsupported"] != "missing"), "missing-description status contradicts output")
     counts = {key: sum(r["unsupported"] == key for r in rows) for key in ("true", "false", "unknown", "missing")}
     new_json(output, {"completed_by": "Mark", "source_sha256": digest(labels), "binding": document["binding"],
                       "context": expected.get("context", "schema-valid descriptions"),
+                      "missing_choice_definition": "owner selected No valid description; for raw review this may coexist with nonempty model text",
                       "items": rows, "counts": counts,
                       "unsupported_among_decidable": fraction(counts["true"], counts["true"] + counts["false"])})
     return {"description_checks": len(rows), "counts": counts}

@@ -1,8 +1,8 @@
 # STYLEMATCH-001D handoff — installation blocker
 
 Historical 14 November checkpoint. The download blocker was resolved in the
-[16 November continuation](001d-continuation.md); local inference and structured
-scoring are now complete, with the owner's raw-text factuality review pending.
+[16 November continuation](001d-continuation.md); local inference, structured
+scoring and the owner's raw-text factuality review are now complete.
 
 14 November 2026, Africa/Nairobi. Work stopped at a documented installation /
 transfer blocker. The selected model's suitability on the laptop remains

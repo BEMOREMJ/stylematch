@@ -138,3 +138,23 @@ def test_raw_review_preserves_failure_and_never_supplies_owner_checks(tmp_path, 
     assert "unsupported" not in row
     assert (run / "predictions.json").read_bytes() == before
     assert '<script>never execute</script>' not in (output / "description-review.html").read_text()
+
+
+def test_raw_no_valid_description_choice_is_preserved_without_changing_response(tmp_path, monkeypatch):
+    monkeypatch.setattr("stylematch.interpretation.private_path", lambda p: p)
+    monkeypatch.setattr("stylematch.preparation.private_path", lambda p: p)
+    run = tmp_path / "raw-review"
+    run.mkdir()
+    expected = run / "description-review.json"
+    expected.write_text(json.dumps({"context": "Raw output review", "items": [
+        {"id": "a", "description": "Synthetic malformed text", "schema_valid": False,
+         "text_source": "unmodified raw model response"}]}))
+    before = expected.read_bytes()
+    labels = tmp_path / "checks.json"
+    labels.write_text(json.dumps({"binding": sha256(before).hexdigest(), "completed_by": "Mark",
+                                 "items": [{"id": "a", "unsupported": "missing", "notes": ""}]}))
+    output = tmp_path / "preserved.json"
+    assert import_descriptions(run, labels, output)["counts"]["missing"] == 1
+    saved = json.loads(output.read_bytes())
+    assert saved["items"][0] == {"id": "a", "unsupported": "missing", "notes": ""}
+    assert expected.read_bytes() == before
