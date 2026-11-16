@@ -180,9 +180,50 @@ def import_descriptions(run, labels, output):
         require(bool(item["description"]) == (row["unsupported"] != "missing"), "missing-description status contradicts output")
     counts = {key: sum(r["unsupported"] == key for r in rows) for key in ("true", "false", "unknown", "missing")}
     new_json(output, {"completed_by": "Mark", "source_sha256": digest(labels), "binding": document["binding"],
+                      "context": expected.get("context", "schema-valid descriptions"),
                       "items": rows, "counts": counts,
                       "unsupported_among_decidable": fraction(counts["true"], counts["true"] + counts["false"])})
     return {"description_checks": len(rows), "counts": counts}
+
+
+def export_raw_review(run, reference_path, output):
+    """Show raw visible claims for owner review, without repairing schema failures."""
+    run, reference_path, output = private_path(run), private_path(reference_path), private_path(output)
+    reference = json.loads(reference_path.read_bytes())
+    binding = json.loads((run / "reference-binding.json").read_bytes())
+    require(binding["reference_sha256"] == digest(reference_path), "run reference mismatch")
+    predictions = json.loads((run / "predictions.json").read_bytes())["predictions"]
+    payloads = json.loads((run / "input-payloads.json").read_bytes())["items"]
+    ids = [r["id"] for r in reference["labels"]]
+    require([p["id"] for p in payloads] == ids, "run input membership mismatch")
+    by_id = {p["id"]: p for p in predictions}
+    require(len(by_id) == len(predictions) and set(by_id).issubset(ids), "unexpected/duplicate predictions")
+    occluded = {r["id"] for r in reference["mapping"]["items"]
+                if r["kind"] == "crop" and r["entity"] in ("task-009", "task-010")}
+    output.mkdir(parents=True, exist_ok=False)
+    context = ("Owner factuality check of raw model responses, including invalid or truncated JSON. "
+               "This does not repair predictions or change attribute/schema scores. "
+               "Flag unsupported visible claims; use Cannot decide if the text cannot be judged.")
+    items, display = [], []
+    for payload in payloads:
+        prediction = by_id.get(payload["id"], {})
+        raw = prediction.get("raw", "")
+        require(type(raw) is str, "raw model output must be text")
+        valid = parse_prediction(raw)[1] is None
+        reason = prediction.get("finish_reason", "missing")
+        items.append({"id": payload["id"], "description": raw or None, "schema_valid": valid,
+                      "finish_reason": reason, "text_source": "unmodified raw model response"})
+        display.append({"id": payload["id"], "pixels": payload["pixels"], "description": raw or None,
+                        "occluded": payload["id"] in occluded,
+                        "source_note": f"Raw response; schema {'valid' if valid else 'invalid'}; finish reason: {reason}."})
+    new_json(output / "description-review.json", {"context": context,
+                                                  "run_predictions_sha256": digest(run / "predictions.json"),
+                                                  "items": items})
+    data = {"binding": digest(output / "description-review.json"), "context": context, "items": display}
+    html = Path(__file__).with_name("description_review.html").read_text(encoding="utf-8")
+    (output / "description-review.html").write_text(
+        html.replace("/*PAYLOAD*/null", json.dumps(data).replace("<", "\\u003c")), encoding="utf-8")
+    return {"items": len(items), "review": str(output / "description-review.html"), "context": context}
 
 
 def main():
@@ -199,14 +240,20 @@ def main():
     description.add_argument("--run", type=Path, required=True)
     description.add_argument("--labels", type=Path, required=True)
     description.add_argument("--output", type=Path, required=True)
+    raw = commands.add_parser("raw-output-review")
+    raw.add_argument("--run", type=Path, required=True)
+    raw.add_argument("--reference", type=Path, required=True)
+    raw.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     try:
         if args.command == "review":
             result = export_review(args.pilot, args.output)
         elif args.command == "import-reference":
             result = import_reference(args.review, args.labels, args.output)
-        else:
+        elif args.command == "import-descriptions":
             result = import_descriptions(args.run, args.labels, args.output)
+        else:
+            result = export_raw_review(args.run, args.reference, args.output)
         print(json.dumps(result, indent=2))
         return 0
     except (ValueError, OSError) as exc:

@@ -5,7 +5,7 @@ import json
 
 import pytest
 
-from stylematch.interpretation import VOCAB, import_descriptions, import_reference, parse_prediction, score
+from stylematch.interpretation import VOCAB, export_raw_review, import_descriptions, import_reference, parse_prediction, score
 from stylematch.vlm_worker import png_payload
 from PIL import Image
 
@@ -116,3 +116,25 @@ def test_description_checks_remain_owner_supplied_and_bound(tmp_path, monkeypatc
     labels.write_text(json.dumps(document))
     with pytest.raises(ValueError, match="contradicts"):
         import_descriptions(run, labels, tmp_path / "invalid.json")
+
+
+def test_raw_review_preserves_failure_and_never_supplies_owner_checks(tmp_path, monkeypatch):
+    monkeypatch.setattr("stylematch.interpretation.private_path", lambda p: p)
+    monkeypatch.setattr("stylematch.preparation.private_path", lambda p: p)
+    run = tmp_path / "run"
+    run.mkdir()
+    reference = tmp_path / "reference.json"
+    reference.write_text(json.dumps({"labels": [{"id": "a"}], "mapping": {"items": [
+        {"id": "a", "kind": "crop", "entity": "task-009"}]}}))
+    (run / "reference-binding.json").write_text(json.dumps({"reference_sha256": sha256(reference.read_bytes()).hexdigest()}))
+    raw = 'Synthetic unsupported claim. </script><script>never execute</script>'
+    (run / "predictions.json").write_text(json.dumps({"predictions": [{"id": "a", "raw": raw, "finish_reason": "length"}]}))
+    (run / "input-payloads.json").write_text(json.dumps({"items": [{"id": "a", "pixels": "data:image/png;base64,synthetic"}]}))
+    before = (run / "predictions.json").read_bytes()
+    output = tmp_path / "review"
+    assert export_raw_review(run, reference, output)["items"] == 1
+    row = json.loads((output / "description-review.json").read_bytes())["items"][0]
+    assert row["description"] == raw and row["schema_valid"] is False and row["finish_reason"] == "length"
+    assert "unsupported" not in row
+    assert (run / "predictions.json").read_bytes() == before
+    assert '<script>never execute</script>' not in (output / "description-review.html").read_text()
