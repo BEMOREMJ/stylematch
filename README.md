@@ -62,6 +62,9 @@ that provisional performance targets passed.
 - [Environment evidence](docs/environment.md), [decisions](docs/decisions.md)
   and [001B prerequisites](docs/001b-handoff.md).
 - [Actual 001A validation results](docs/validation.md).
+- [001E fixed human-assisted development comparison](docs/001e-development.md):
+  verify and reuse private 001C scores, compare human attributes and hybrid
+  ordering, and preserve original embedding abstention decisions.
 
 ## Synthetic fixture
 

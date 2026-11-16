@@ -67,3 +67,44 @@ or changed. The final contract remains open and stage advancement belongs to
 the master roadmap. A fresh held-out evaluation needs explicit candidate,
 annotation availability/effort, sealed split/custodian, relevance protocol,
 abstention calibration, success/resource criteria and uncertainty decisions.
+
+## Reproduction
+
+Use the already installed locked environment and the preserved local inputs;
+there is no download or inference step. The runner validates ancestry, private
+paths, accepted labels/images, reference source and mapping, 001C registration
+against its delivered commit, encoder identity, cached vector dimensions and
+score/ranking reproduction (absolute score tolerance 1e-6 for float32 cache
+serialization). It reuses the original saved scores, rather than replacing them
+with recomputed rounded scores. It refuses existing outputs and outputs inside
+any preserved input tree.
+
+```powershell
+.venv/Scripts/python.exe -m stylematch.comparison --output data/comparison-001e-02
+.venv/Scripts/python.exe -m pytest -q
+node tests/check_attribute_review.cjs
+git diff --check
+```
+
+Optional CLI paths are `--pilot`, `--saved`, `--reference-root` and `--protocol`.
+The accepted private filenames within those roots remain explicit and versioned
+in the runner. It never searches for replacement labels or infers labels from
+names. The benchmark extra (already installed for 001C) supplies NumPy to read
+the saved cache with pickle disabled. Neither ONNX Runtime nor a VLM is loaded.
+
+Every new run records source/configuration/dependency/input bindings before new
+assisted scores, projected ranking inputs, full rankings and field contribution
+breakdowns, unchanged-evaluator raw/validated reports, all paired deltas,
+category/occlusion/small-pool details, repeated incremental timing samples and
+a before/after preservation check. Cached comparison reports retain original
+001C metadata and historical resource scope. New reports use null resource
+fields with explanations; incremental timing is separate. Hybrid ordering-only
+reports deliberately have no hybrid-score threshold; their metadata records the
+original cosine mask.
+
+The initial development execution and subsequent verification runs must use
+fresh ignored folders. Findings and practical recommendations belong in the
+private handoff and requested chat handoff, never in committed per-task outputs,
+attribute labels or vectors. All existing pilot and interpretation runs remain
+unchanged. These implementation checks do not approve or freeze the final
+evaluation contract.
