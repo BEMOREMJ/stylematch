@@ -65,6 +65,9 @@ that provisional performance targets passed.
 - [001E fixed human-assisted development comparison](docs/001e-development.md):
   verify and reuse private 001C scores, compare human attributes and hybrid
   ordering, and preserve original embedding abstention decisions.
+- [001E held-out owner-review amendment A1](docs/evaluation-contract.md#001e-amendment-a1--owner-review-draft):
+  draft collection options, effort/benefit criteria and source-level uncertainty;
+  synthetic split-audit/bootstrap checks only, no real held-out execution.
 
 ## Synthetic fixture
 
