@@ -68,6 +68,8 @@ that provisional performance targets passed.
 - [001E held-out owner-review amendment A1](docs/evaluation-contract.md#001e-amendment-a1--owner-review-draft):
   draft collection options, effort/benefit criteria and source-level uncertainty;
   synthetic split-audit/bootstrap checks only, no real held-out execution.
+- [Approved Option A freeze STYLEMATCH-001E-A1-A-v1](docs/001e-a1-a-v1-freeze.md):
+  owner decision, fixed local cutoff, private intake and label-release sequence.
 
 ## Synthetic fixture
 

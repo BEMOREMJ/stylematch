@@ -1,0 +1,151 @@
+{
+  "protocol_id": "STYLEMATCH-001E-A1",
+  "status": "FROZEN",
+  "recorded_date": "2026-11-17",
+  "timezone": "Africa/Nairobi",
+  "owner_approval": {
+    "owner": "Mark",
+    "decision_date": "2026-11-17",
+    "timezone": "Africa/Nairobi",
+    "source": "Explicit owner approval in this chat; Option A, A1 caps/comparisons/numerical criteria and sole reviewer/custodian",
+    "approval_time": "not supplied; date-based calendar window"
+  },
+  "selected_design": "A",
+  "label_custodian": "Mark",
+  "canonical_reviewer": "Mark",
+  "part1_commit": "4e49796614541c2a808caecfb3d2811976a8c82a",
+  "fixed_rules": "configs/001e-development.json at part1_commit; all three fields retained",
+  "encoder": "configs/001c-encoder.json at part1_commit; no checkpoint or preprocessing change",
+  "primary_comparison": [
+    "human-assisted-attributes-only",
+    "mobilenetv2-human-crop"
+  ],
+  "category_seed": 104729,
+  "presentation_randomization": {
+    "tag_pass": "Random('20261117:tag-pass') on sorted neutral view IDs",
+    "grade_tasks": "Random('20261117:grade-pass-1') on sorted query IDs",
+    "grade_candidates": "Random('20261117:grade:'+query_id) on sorted compound IDs",
+    "recheck_sources": "Random('20261117:recheck-sources') on sorted eligible source IDs; take first ceil(0.20*N)",
+    "recheck_candidates": "Random('20261117:recheck:'+query_id) on sorted compound IDs"
+  },
+  "hybrid_included": false,
+  "abstention": {
+    "original_crop_cosine_threshold": 0.6,
+    "attribute_ordering_uses_same_crop_mask": true
+  },
+  "collection": {
+    "independent_sources_target": 24,
+    "screened_sources_cap": 36,
+    "calendar_days_cap_from_approval": 14,
+    "images_per_source": 1,
+    "components_per_category_per_source_max": 1,
+    "expected_tasks_by_category": {
+      "tops": 24,
+      "bottoms": 18,
+      "outerwear": 6
+    },
+    "expected_matchable_tasks_assumption": 36,
+    "expected_no_match_tasks_assumption": 12,
+    "repeat_review_source_fraction": 0.2,
+    "repeat_review_seed": 20261117
+  },
+  "options": {
+    "A": {
+      "design": "known-wardrobe",
+      "garments_by_category": {
+        "tops": 6,
+        "bottoms": 6,
+        "outerwear": 3
+      },
+      "new_garments": 0,
+      "expected_tasks": 48,
+      "expected_candidate_judgments": 270
+    }
+  },
+  "workload_assumptions_seconds": {
+    "source_selection_per_accepted_look": 120,
+    "crop_per_task": 20,
+    "query_tag_per_task": 20,
+    "candidate_grade": 15,
+    "new_garment_capture_preparation": 120,
+    "new_garment_tag": 30
+  },
+  "workload_contingency_fraction": 0.2,
+  "ranking_decision_proposal": {
+    "min_matchable_tasks": 30,
+    "min_matchable_sources": 20,
+    "min_delta_hit1": 0.1,
+    "cluster_ci_lower_strictly_greater_than": 0,
+    "min_gain_sources": 5,
+    "min_leave_one_source_out_delta_strictly_greater_than": 0
+  },
+  "abstention_reporting_floor": {
+    "min_no_match_tasks": 10,
+    "min_no_match_sources": 8
+  },
+  "abstention_observed_rate_proposals": {
+    "max_false_accept_rate": 0.1,
+    "max_false_reject_rate": 0.2
+  },
+  "effort_proposals_seconds": {
+    "query_tag_median_max": 20,
+    "query_tag_p90_max": 40,
+    "crop_median_max": 30,
+    "crop_p90_max": 60,
+    "new_wardrobe_tag_total_max": 900,
+    "new_wardrobe_setup_including_capture_total_max": 3600
+  },
+  "resource_proposals": {
+    "cpu_only": true,
+    "worker_peak_ram_bytes_max": 1073741824,
+    "cold_query_including_imports_load_ms_max": 5000,
+    "cold_scope": "Fresh worker, prebuilt wardrobe vector cache; includes imports, load, cache read and query; cache creation timed separately",
+    "warm_query_p95_ms_max": 1000,
+    "wardrobe_cache_ms_max": 10000,
+    "warm_repetitions_per_task": 3,
+    "paid_service_spend_max": 0
+  },
+  "uncertainty": {
+    "method": "paired source-cluster percentile bootstrap, task-weighted ratio",
+    "repetitions": 10000,
+    "seed": 20261117,
+    "percentile_indices": "floor(p*(B-1)), p in {0.025,0.975}",
+    "secondary": "source-balanced delta and leave-one-source-out sensitivity"
+  },
+  "boundary": "Owner-approved Option A protocol frozen before collection. This checkpoint initializes intake only; no held-out inference, ranking or scoring. Stage advancement remains with the master roadmap.",
+  "freeze_id": "STYLEMATCH-001E-A1-A-v1",
+  "draft_commit": "2e72357459ff720f88369615ed0d4cbc32bccbb5",
+  "public_bindings": {
+    "configs/001e-heldout-draft.json": "d690882d92ced57ed24988fe174000b77cfb60fbbf2d7a782a041b4af79d20e6",
+    "configs/001e-development.json": "8687f49d293db6002edb342392cfadec81448ef99f2c33cfb8af7c85722b2c8c",
+    "configs/001c-encoder.json": "45ed6b08e59f940364834838568fcc3942757ea44e740cac7af7fa3538a4b1cb",
+    "stylematch/comparison.py": "d7285944d5646a6d7b3d0d01acb67f2a79f640ca2a4cc1893ee699a3b6a816be",
+    "stylematch/benchmark.py": "7c04c6dfdb8b3379c0008ac945702bcc178e7935f1d91ace17aae565543ef006",
+    "stylematch/encoder_worker.py": "eb2d37174a30bc943c421e8c31df34ffe46b118f72c2c8494dc306fbbe2eef48",
+    "stylematch/interpretation.py": "a8cdc8b220ae8f3f97105016aa3154cab5d2dc281a6ff8801a833273303458c3",
+    "stylematch/holdout.py": "2d6ecda700d4db6fccaa554e26753bff7389aa535305416cb016f933817980e9",
+    "stylematch/validation.py": "e991cb42f53a90f6353847625fcc93e9f78623c7a373d4adcb4e32e430bfa41e",
+    "stylematch/contracts.py": "f636c4d206d8aed88e4796b078351a429a3ce0e9ac734f05fa88da5f57d435f8",
+    "stylematch/evaluation.py": "0f531be0d4b708e4f3270fe627f274d6b21a35fc55b679f15d36b8f934ea448d",
+    "docs/evaluation-contract.md": "9a530e12c86ef5d23809ca208545365c9e9d7b45435eccd315305e2887c6f8ac",
+    "uv.lock": "062f29b2efe6acf90ff144e19a265185cd0606ebf455fd4859c5d13e75676cc3"
+  },
+  "collection_window": {
+    "approval_local_date": "2026-11-17",
+    "cutoff_exclusive": "2026-12-01T00:00:00+03:00",
+    "last_collection_local_date": "2026-11-30",
+    "counting_rule": "Local approval date plus 14 calendar days at midnight, exclusive. No invented approval time or rolling 336-hour clock. Collection begins only after verified freeze push."
+  },
+  "inactive_for_option_A": [
+    "new_wardrobe_tag_total_max",
+    "new_wardrobe_setup_including_capture_total_max",
+    "new_garment_capture_preparation",
+    "new_garment_tag"
+  ],
+  "custody": {
+    "reviewer": "Mark",
+    "custodian": "Mark",
+    "mode": "Procedural local separation; Python ranking-file guard; no independent OS identity or encryption claim",
+    "label_release": "Only after complete input/label seals, repeat review and all fixed predictions are locked"
+  }
+}
